@@ -23,40 +23,19 @@
   </div>
 
   <!-- New Post Form -->
-  <div class="glass-effect rounded-2xl shadow-2xl p-4 md:p-8 mb-8 md:mb-12 slide-down max-w-4xl mx-auto">
-    <div class="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
-      <span class="text-2xl md:text-3xl">✍️</span>
-      <h2 class="text-xl md:text-2xl font-bold gradient-text">پست جدید بنویسید</h2>
+  {% if user.is_authenticated %}
+    <div class="glass-effect rounded-2xl shadow-2xl p-4 md:p-8 mb-8 md:mb-12 slide-down max-w-4xl mx-auto">
+      <div class="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
+        <span class="text-2xl md:text-3xl">✍️</span>
+        <h2 class="text-xl md:text-2xl font-bold gradient-text">پست جدید بنویسید</h2>
+      </div>
+      <form class="space-y-4 md:space-y-6" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="w-full px-4 md:px-6 py-3 md:py-4 btn-primary text-white rounded-xl font-bold text-base md:text-lg">انتشار پست 🚀</button>
+      </form>
     </div>
-
-    <form class="space-y-4 md:space-y-6">
-      <div>
-        <label class="block text-gray-700 font-semibold mb-2 flex items-center gap-2 text-sm md:text-base">
-          <span>📌</span>
-          <span>عنوان پست</span>
-        </label>
-        <input type="text" class="w-full px-3 md:px-4 py-2 md:py-3 rounded-xl input-field text-sm md:text-base" placeholder="عنوان جذاب برای پست خود بنویسید..." />
-      </div>
-
-      <div>
-        <label class="block text-gray-700 font-semibold mb-2 flex items-center gap-2 text-sm md:text-base">
-          <span>📄</span>
-          <span>توضیحات</span>
-        </label>
-        <textarea rows="4" class="w-full px-3 md:px-4 py-2 md:py-3 rounded-xl input-field resize-none text-sm md:text-base" placeholder="محتوای پست خود را اینجا بنویسید..."></textarea>
-      </div>
-
-      <div>
-        <label class="block text-gray-700 font-semibold mb-2 flex items-center gap-2 text-sm md:text-base">
-          <span>👤</span>
-          <span>نام نویسنده</span>
-        </label>
-        <input type="text" class="w-full px-3 md:px-4 py-2 md:py-3 rounded-xl input-field text-sm md:text-base" value="محمد احمدی" readonly />
-      </div>
-
-      <button type="submit" class="w-full px-4 md:px-6 py-3 md:py-4 btn-primary text-white rounded-xl font-bold text-base md:text-lg">انتشار پست 🚀</button>
-    </form>
-  </div>
+  {% endif %}
   <!-- Posts Grid -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
     <!-- Post Card 1 -->
@@ -90,9 +69,9 @@
           </div>
 
           <div class="mt-3 md:mt-4 flex items-center gap-3 md:gap-4 text-xs md:text-sm text-gray-600">
-            <span>👁️ 234</span>
-            <span>💬 12</span>
-            <span>❤️ 45</span>
+            <span>👁️ به زودی</span>
+            <span>💬 به زودی</span>
+            <span>❤️ به زودی</span>
           </div>
         </div>
       </div>
