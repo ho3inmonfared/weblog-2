@@ -11,3 +11,8 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model=models.CustomUser
         fields=UserChangeForm.Meta.fields
+        
+class SignUpForm(UserCreationForm):
+    class Meta:
+        model=models.CustomUser
+        fields=['username','email','password1','password2']
