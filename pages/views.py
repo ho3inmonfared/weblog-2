@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 from posts import models,forms
 
 # class Home(generic.TemplateView):
@@ -29,5 +30,13 @@ class PostDetail(generic.DetailView):
     template_name='pages/detail.html'
     context_object_name='post'
     
+
+class PostUpdate(LoginRequiredMixin,generic.UpdateView):
+    model=models.Post
+    form_class=forms.PostForm
+    template_name='pages/update.html'
+    
+    def get_queryset(self):
+        return models.Post.objects.filter(author=self.request.user)
     
     

@@ -1,0 +1,52 @@
+{% extends '_base.html' %}
+
+{% block title %}
+  ویرایش پست
+{% endblock %}
+
+{% block content %}
+  <div class="min-h-[70vh] flex items-start justify-center fade-in">
+    <div class="glass-effect rounded-2xl shadow-2xl p-6 md:p-10 w-full max-w-4xl slide-up">
+      <!-- Header -->
+      <div class="flex items-center gap-3 mb-6">
+        <span class="text-3xl">✏️</span>
+        <h1 class="text-2xl md:text-3xl font-bold gradient-text">ویرایش پست</h1>
+      </div>
+
+      <!-- Form -->
+      <form method="POST" class="space-y-6">
+        {% csrf_token %}
+
+        <!-- Title -->
+        <div>
+          <label class="block text-gray-700 font-semibold mb-2">📌 عنوان پست</label>
+          {{ form.title }}
+        </div>
+
+        <!-- Description -->
+        <div>
+          <label class="block text-gray-700 font-semibold mb-2">📄 توضیحات</label>
+          {{ form.description }}
+        </div>
+
+        <!-- Status -->
+        <div>
+          <label class="block text-gray-700 font-semibold mb-2">🔒 وضعیت انتشار</label>
+          {{ form.status }}
+        </div>
+
+        <!-- Divider -->
+        <div class="divider"></div>
+
+        <!-- Actions -->
+        <div class="flex flex-col sm:flex-row gap-3 justify-between items-center">
+          <!-- Back -->
+          <a href="{% url 'post_detail' post.pk %}" class="px-6 py-3 rounded-xl btn-secondary text-white font-bold hover-lift text-center w-full sm:w-auto">⬅ بازگشت</a>
+
+          <!-- Submit -->
+          <button type="submit" class="px-8 py-3 rounded-xl btn-primary text-white font-bold hover-lift w-full sm:w-auto">💾 ذخیره تغییرات</button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
