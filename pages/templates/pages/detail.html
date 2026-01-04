@@ -1,0 +1,45 @@
+{% extends '_base.html' %}
+
+{% block title %}
+  {{ post.title }}
+{% endblock %}
+
+{% block content %}
+  <div class="min-h-[70vh] flex items-start justify-center fade-in py-6">
+    <div class="glass-effect rounded-2xl shadow-2xl p-6 md:p-10 w-full max-w-4xl slide-up">
+      <!-- Header -->
+      <div class="mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold gradient-text mb-3">{{ post.title }}</h1>
+
+        <div class="flex flex-wrap items-center gap-3 text-sm text-gray-600">
+          <span class="badge">{{ post.get_status_display }}</span>
+          <span>✍️ {{ post.author }}</span>
+          <span>📅 {{ post.created_at|date:'Y/m/d' }}</span>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="divider my-6"></div>
+
+      <!-- Content -->
+      <div class="text-gray-700 leading-relaxed text-base md:text-lg whitespace-pre-line">{{ post.description }}</div>
+
+      <!-- Divider -->
+      <div class="divider my-6"></div>
+
+      <!-- Actions -->
+      <div class="flex items-center justify-between gap-4 flex-wrap">
+        <!-- Back -->
+        <a href="{% url 'home' %}" class="px-5 py-2.5 rounded-xl btn-secondary text-white font-bold hover-lift text-sm">⬅ بازگشت به خانه</a>
+
+        {% if request.user == post.author %}
+          <div class="flex items-center gap-3">
+            <a href="#" class="flex items-center gap-1 px-4 py-2 rounded-xl btn-edit text-white hover-lift text-sm font-bold" title="ویرایش پست">✏️ ویرایش</a>
+
+            <a href="#" class="flex items-center gap-1 px-4 py-2 rounded-xl btn-delete text-white hover-lift text-sm font-bold" title="حذف پست">🗑 حذف</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

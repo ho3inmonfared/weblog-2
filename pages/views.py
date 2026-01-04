@@ -23,4 +23,11 @@ def homeview(request):
         'form':form,
     }
     return render(request,'pages/home.html',context)
+
+class PostDetail(generic.DetailView):
+    model=models.Post
+    template_name='pages/detail.html'
+    context_object_name='post'
+    
+    
     

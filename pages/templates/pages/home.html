@@ -1,5 +1,7 @@
 {% extends '_base.html' %}
-{% block title %}خانه{% endblock title %}
+{% block title %}
+  خانه
+{% endblock %}
 {% block content %}
   <!-- Hero Section -->
   <div class="text-center mb-8 md:mb-12 fade-in">
@@ -42,7 +44,8 @@
     <!-- Post Card 1 -->
     {% for post in posts %}
       <div class="post-card glass-effect rounded-2xl shadow-lg hover-lift fade-in">
-        <div class="p-4 md:p-6">
+        <!--  link -->
+        <a href="{% url 'post_detail' post.pk %}" class="block p-4 md:p-6">
           <div class="flex items-center gap-2 mb-3 md:mb-4">
             {% if forloop.first %}
               <span class="badge text-xs">جدید</span>
@@ -51,23 +54,25 @@
           </div>
 
           <h3 class="text-lg md:text-xl font-bold text-purple-700 mb-2 md:mb-3">{{ post.title }}</h3>
+
           <p class="text-sm md:text-base text-gray-700 mb-3 md:mb-4 leading-relaxed">{{ post.description|truncatewords:20 }}</p>
+        </a>
 
-          <div class="divider my-3 md:my-4"></div>
+        <div class="divider my-3 md:my-4"></div>
 
+        <!-- Footer  -->
+        <div class="px-4 md:px-6 pb-4 md:pb-6">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <div class="avatar text-sm" style="width: 32px; height: 32px; font-size: 14px;">{{ post.author.username.0 }}</div>
-              <div>
-                <div class="font-semibold text-gray-700 text-xs md:text-sm">{{ post.author }}</div>
-              </div>
+              <div class="font-semibold text-gray-700 text-xs md:text-sm">{{ post.author }}</div>
             </div>
 
-            {% if user == post.author %}
-            <div class="flex gap-1 md:gap-2">
-              <a class="px-2 md:px-3 py-1 btn-edit text-white rounded-lg text-xs font-bold" href="#">ویرایش</a>
-              <a class="px-2 md:px-3 py-1 btn-delete text-white rounded-lg text-xs font-bold" href="#">حذف</a>
-            </div>
+            {% if request.user == post.author %}
+              <div class="flex gap-1 md:gap-2">
+                <a href="#" class="px-2 md:px-3 py-1 btn-edit text-white rounded-lg text-xs font-bold">ویرایش</a>
+                <a href="#" class="px-2 md:px-3 py-1 btn-delete text-white rounded-lg text-xs font-bold">حذف</a>
+              </div>
             {% endif %}
           </div>
 
