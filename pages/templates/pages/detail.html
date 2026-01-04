@@ -36,7 +36,7 @@
           <div class="flex items-center gap-3">
             <a href="{% url 'post_update' post.pk %}" class="flex items-center gap-1 px-4 py-2 rounded-xl btn-edit text-white hover-lift text-sm font-bold" title="ویرایش پست">✏️ ویرایش</a>
 
-            <a href="#" class="flex items-center gap-1 px-4 py-2 rounded-xl btn-delete text-white hover-lift text-sm font-bold" title="حذف پست">🗑 حذف</a>
+            <a href="{% url 'post_delete' post.pk %}" class="flex items-center gap-1 px-4 py-2 rounded-xl btn-delete text-white hover-lift text-sm font-bold" title="حذف پست">🗑 حذف</a>
           </div>
         {% endif %}
       </div>

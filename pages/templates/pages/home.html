@@ -71,7 +71,7 @@
             {% if request.user == post.author %}
               <div class="flex gap-1 md:gap-2">
                 <a href="{% url 'post_update' post.pk %}" class="px-2 md:px-3 py-1 btn-edit text-white rounded-lg text-xs font-bold">ویرایش</a>
-                <a href="#" class="px-2 md:px-3 py-1 btn-delete text-white rounded-lg text-xs font-bold">حذف</a>
+                <a href="{% url 'post_delete' post.pk %}" class="px-2 md:px-3 py-1 btn-delete text-white rounded-lg text-xs font-bold">حذف</a>
               </div>
             {% endif %}
           </div>

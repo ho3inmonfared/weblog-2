@@ -1,0 +1,51 @@
+{% extends "_base.html" %}
+
+{% block title %}حذف پست{% endblock title %}
+
+{% block content %}
+
+<div class="min-h-[70vh] flex items-center justify-center fade-in">
+  <div class="glass-effect rounded-2xl shadow-2xl p-6 md:p-10 w-full max-w-md slide-down text-center">
+
+    <!-- Icon -->
+    <div class="text-5xl mb-4 animate-pulse">⚠️</div>
+
+    <!-- Title -->
+    <h1 class="text-2xl font-bold text-red-600 mb-3">
+      حذف پست
+    </h1>
+
+    <!-- Message -->
+    <p class="text-gray-700 leading-relaxed mb-6">
+      آیا از حذف پست  
+      <span class="font-bold text-purple-700">
+        «{{ post.title }}»
+      </span>
+      مطمئن هستید؟
+      <br>
+      <span class="text-sm text-gray-500">
+        این عملیات غیرقابل بازگشت است.
+      </span>
+    </p>
+
+    <!-- Actions -->
+    <form method="POST" class="flex gap-3">
+      {% csrf_token %}
+
+      <!-- Cancel -->
+      <a href="{% url 'post_detail' post.pk %}"
+         class="flex-1 px-4 py-3 rounded-xl btn-secondary text-white font-bold hover-lift">
+        ❌ لغو
+      </a>
+
+      <!-- Delete -->
+      <button type="submit"
+              class="flex-1 px-4 py-3 rounded-xl btn-delete text-white font-bold hover-lift">
+        🗑 حذف
+      </button>
+    </form>
+
+  </div>
+</div>
+
+{% endblock content %}

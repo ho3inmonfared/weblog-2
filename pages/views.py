@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from posts import models,forms
@@ -35,6 +36,15 @@ class PostUpdate(LoginRequiredMixin,generic.UpdateView):
     model=models.Post
     form_class=forms.PostForm
     template_name='pages/update.html'
+    
+    def get_queryset(self):
+        return models.Post.objects.filter(author=self.request.user)
+    
+    
+class PostDelete(LoginRequiredMixin,generic.DeleteView):
+    model=models.Post
+    template_name='pages/delete.html'
+    success_url=reverse_lazy('home')
     
     def get_queryset(self):
         return models.Post.objects.filter(author=self.request.user)
