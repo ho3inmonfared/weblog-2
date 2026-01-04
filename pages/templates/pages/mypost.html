@@ -1,0 +1,76 @@
+{% extends "_base.html" %}
+
+{% block title %}پست‌های من{% endblock title %}
+
+{% block content %}
+
+<div class="min-h-[70vh] fade-in">
+
+    {% comment %} <!-- Page Header -->
+    <div class="mb-6 text-center">
+        <h1 class="text-2xl md:text-3xl font-bold">پست‌های من</h1>
+        <p class="text-light text-sm">تمام پست‌هایی که شما ایجاد کرده‌اید</p>
+    </div> {% endcomment %}
+
+    <!-- Posts Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% if posts %}
+            {% for post in posts %}
+            <div class="post-card glass-effect rounded-2xl shadow-lg hover-lift fade-in">
+
+                <!-- Card Link -->
+                <a href="{% url 'post_detail' post.pk %}" class="block p-4 md:p-6">
+                    <div class="flex items-center gap-2 mb-3 md:mb-4">
+                        {% if forloop.first %}<span class="badge text-xs">جدید</span>{% endif %}
+                        <span class="text-xs md:text-sm text-gray-500">{{ post.created_at|date:'Y/m/d' }}</span>
+                    </div>
+
+                    <h3 class="text-lg md:text-xl font-bold text-purple-700 mb-2 md:mb-3">{{ post.title }}</h3>
+
+                    <p class="text-sm md:text-base text-gray-700 mb-3 md:mb-4 leading-relaxed">
+                        {{ post.description|truncatewords:20 }}
+                    </p>
+                </a>
+
+                <div class="divider my-3 md:my-4"></div>
+
+                <!-- Card Footer -->
+                <div class="px-4 md:px-6 pb-4 md:pb-6">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <div class="avatar text-sm" style="width: 32px; height: 32px; font-size: 14px;">
+                                {{ post.author.username.0 }}
+                            </div>
+                            <div class="font-semibold text-gray-700 text-xs md:text-sm">شما</div>
+                        </div>
+
+                        {% if request.user == post.author %}
+                        <div class="flex gap-1 md:gap-2">
+                            <a href="{% url 'post_update' post.pk %}" class="px-2 md:px-3 py-1 btn-edit text-white rounded-lg text-xs font-bold">
+                                ✏️ ویرایش
+                            </a>
+                            <a href="{% url 'post_delete' post.pk %}" class="px-2 md:px-3 py-1 btn-delete text-white rounded-lg text-xs font-bold">
+                                🗑 حذف
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mt-3 md:mt-4 flex items-center gap-3 md:gap-4 text-xs md:text-sm text-gray-600">
+                        <span>👁️ به زودی</span>
+                        <span>💬 به زودی</span>
+                        <span>❤️ به زودی</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-span-full text-center text-gray-600 py-20">
+                هنوز پستی ایجاد نکرده‌اید.
+            </div>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock content %}

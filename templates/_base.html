@@ -43,7 +43,7 @@
                   </li>
                   {% if user.is_authenticated %}
                     <li>
-                      <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">✍️ پست‌های من</a>
+                      <a href="{% url 'mypost' %}" class="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">✍️ پست‌های من</a>
                     </li>
                     <li>
                       <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-700 transition">📝 پیش‌نویس‌ها</a>
@@ -155,7 +155,7 @@
             </li>
             {% if user.is_authenticated %}
               <li>
-                <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-700">✍️ پست‌های من</a>
+                <a href="{% url 'mypost' %}" class="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-700">✍️ پست‌های من</a>
               </li>
               <li>
                 <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-purple-50 hover:text-purple-700">📝 پیش‌نویس‌ها</a>
