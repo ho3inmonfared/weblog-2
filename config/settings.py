@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY
 # ===========================
 SECRET_KEY = 'django-insecure-wqg-m_z#0%_vtl(0_k+c_lx0!ggk&4z8*20ync3jm$*j4ommb9'
-DEBUG = True  # موقت برای دیباگ روی Render
+DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 # ===========================
