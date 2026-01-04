@@ -65,7 +65,11 @@
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
               <div class="avatar text-sm" style="width: 32px; height: 32px; font-size: 14px;">{{ post.author.username.0 }}</div>
+              {% if request.user == post.author %}
+              <div class="font-semibold text-gray-700 text-xs md:text-sm">شما</div>
+              {% else %}
               <div class="font-semibold text-gray-700 text-xs md:text-sm">{{ post.author }}</div>
+              {% endif %}
             </div>
 
             {% if request.user == post.author %}

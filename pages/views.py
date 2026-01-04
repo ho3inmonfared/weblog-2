@@ -55,6 +55,14 @@ class MyPosts(LoginRequiredMixin,generic.ListView):
     context_object_name='posts'
     
     def get_queryset(self):
-        return models.Post.objects.filter(author=self.request.user)
+        return models.Post.objects.filter(author=self.request.user,status='pub')
+    
+class MyDrafts(LoginRequiredMixin,generic.ListView):
+    model=models.Post
+    template_name='pages/mydrafts.html'
+    context_object_name='posts'
+    
+    def get_queryset(self):
+        return models.Post.objects.filter(author=self.request.user,status='drf')
     
     
