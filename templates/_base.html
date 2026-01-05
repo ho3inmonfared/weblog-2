@@ -14,6 +14,29 @@
   </head>
 
   <body class="gradient-bg min-h-screen">
+    <!-- nav top mobile -->
+    <nav class="md:hidden glass-effect sticky top-0 z-50 px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <span class="text-xl">📝</span>
+        <span class="font-bold">وبلاگ من</span>
+      </div>
+
+      {% if user.is_authenticated %}
+        <div class="flex items-center gap-3">
+          <div class="avatar">{{ user.username.0 }}</div>
+          <span class="text-sm font-semibold">{{ user.username }}</span>
+          <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button class="px-4 py-2 btn-secondary text-white rounded-full font-semibold text-sm">خروج</button>
+          </form>
+        </div>
+      {% else %}
+        <div class="flex gap-3 text-sm font-semibold">
+          <a href="{% url 'login' %}">ورود</a>
+          <a href="{% url 'signup' %}" class="text-purple-600">ثبت‌نام</a>
+        </div>
+      {% endif %}
+    </nav>
     <!-- Desktop Navbar -->
     <nav class="glass-effect shadow-lg sticky top-0 z-50 fade-in desktop-nav">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -77,6 +100,7 @@
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mobile-padding-bottom">
       {% block content %}
+
       {% endblock %}
     </div>
 
@@ -123,7 +147,7 @@
 
     <!-- Mobile Bottom Navigation -->
     <nav class="mobile-bottom-nav">
-      <div class="mobile-bottom-nav-inner">
+      <div class="mobile-bottom-nav-inner flex justify-between items-center px-6">
         <!-- Home -->
         <a href="{% url 'home' %}" class="mobile-nav-item active">
           <div class="nav-icon">🏠</div>
@@ -138,11 +162,7 @@
 
         <!-- FAB -->
         {% if user.is_authenticated %}
-          <a href="#" class="mobile-nav-fab-wrapper"><div class="mobile-fab">✍️</div></a>
-        {% else %}
-          <div class="mobile-nav-fab-wrapper">
-            <div class="mobile-fab opacity-50">✍️</div>
-          </div>
+          <a href="{% url 'home' %}" class="mobile-nav-fab-wrapper"><div class="mobile-fab">✍️</div></a>
         {% endif %}
 
         <!-- Mobile Posts Dropdown -->
@@ -176,12 +196,6 @@
             <div>ورود</div>
           </a>
         {% endif %}
-
-        <!-- Menu -->
-        <div class="mobile-nav-item">
-          <div class="nav-icon">☰</div>
-          <div>منو</div>
-        </div>
       </div>
     </nav>
   </body>
