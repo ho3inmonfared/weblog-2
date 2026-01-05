@@ -1,0 +1,57 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}
+  پروفایل {{ profile_user.username }}
+{% endblock %}
+
+{% block content %}
+  <div class="max-w-4xl mx-auto">
+    <!-- Profile Card -->
+    <div class="glass-effect rounded-3xl p-8 shadow-xl fade-in">
+      <!-- Header -->
+      <div class="flex flex-col md:flex-row items-center gap-6 border-b pb-6 mb-6">
+        <!-- Avatar -->
+        <div class="w-28 h-28 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-4xl font-bold shadow-lg">{{ profile_user.username|first|upper }}</div>
+
+        <!-- User Info -->
+        <div class="text-center md:text-right flex-1">
+          <h2 class="text-2xl font-bold text-gray-800 mb-1">{{ profile_user.username }}</h2>
+          <p class="text-gray-500 text-sm mb-2">{{ profile_user.email }}</p>
+
+          <span class="inline-block px-4 py-1 rounded-full text-sm bg-purple-100 text-purple-700 font-semibold">عضو سایت</span>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+        <div class="rounded-2xl bg-white/60 p-4 text-center shadow">
+          <div class="text-2xl font-bold text-purple-600">{{ post_count|default:0 }}</div>
+          <div class="text-gray-600 text-sm">پست‌ها</div>
+        </div>
+
+        <div class="rounded-2xl bg-white/60 p-4 text-center shadow">
+          <div class="text-2xl font-bold text-purple-600">{{ draft_count|default:0 }}</div>
+          <div class="text-gray-600 text-sm">پیش‌نویس‌ها</div>
+        </div>
+
+        <div class="rounded-2xl bg-white/60 p-4 text-center shadow">
+          <div class="text-2xl font-bold text-purple-600">{{ profile_user.date_joined|date:'Y/m/d' }}</div>
+          <div class="text-gray-600 text-sm">تاریخ عضویت</div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="{% url 'mypost' %}" class="flex-1 text-center btn-primary text-white py-3 rounded-full font-semibold transition hover:scale-[1.02]">✍️ پست‌های من</a>
+
+        <a href="{% url 'mydrafts' %}" class="flex-1 text-center btn-secondary text-white py-3 rounded-full font-semibold transition hover:scale-[1.02]">📝 پیش‌نویس‌ها</a>
+
+        <form method="post" action="{% url 'logout' %}" class="flex-1">
+          {% csrf_token %}
+          <button class="w-full py-3 rounded-full font-semibold text-red-600 bg-red-100 hover:bg-red-200 transition">🚪 خروج</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
