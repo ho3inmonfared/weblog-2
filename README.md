@@ -34,7 +34,51 @@ Weblog-2 is a full-featured blogging platform built using Django. It offers a sm
 | Database      | SQLite (default) |
 | Deployment    | Render           |
 
-------------------------------------
+---
+## 📦 Installation
+
+Follow these steps to run the project locally:
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/ho3inmonfared/weblog-2.git
+cd weblog-2
+
+### 2.Create and activate virtual environment
+python -m venv venv
+venv\Scripts\activate
+
+### 3. Install dependencies
+pip install -r requirements.txt
+
+### 4. Apply database migrations
+python manage.py migrate
+
+### 5.Run the development server
+python manage.py runserver
+
+🧠 Usage
+	•	Register a new account or log in
+	•	Create and publish blog posts
+	•	Like and comment on posts
+	•	Visit author profile pages
+	•	Track post views and engagement
+
+🗂 Project Structure
+weblog-2/
+├── accounts/
+├── blog/
+├── templates/
+├── static/
+├── manage.py
+└── requirements.txt
+
+📬 Contact
+
+👤 Ho3in Monfared
+🔗 GitHub: https://github.com/ho3inmonfared
+
+
 
 
 
