@@ -44,17 +44,17 @@ Follow these steps to run the project locally:
 git clone https://github.com/ho3inmonfared/weblog-2.git
 cd weblog-2
 
-### 2.Create and activate virtual environment
+ 2.Create and activate virtual environment
 python -m venv venv
 venv\Scripts\activate
 
-### 3. Install dependencies
+3. Install dependencies
 pip install -r requirements.txt
 
-### 4. Apply database migrations
+4. Apply database migrations
 python manage.py migrate
 
-### 5.Run the development server
+5.Run the development server
 python manage.py runserver
 
 🧠 Usage
